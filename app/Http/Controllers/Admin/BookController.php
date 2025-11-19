@@ -82,8 +82,11 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
-        //
+    $book->delete();
+
+    return redirect()->route('admin.books.index')
+                     ->with('success', 'Data buku berhasil dihapus!');
     }
 }

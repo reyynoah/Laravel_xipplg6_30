@@ -21,7 +21,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.book.create');
     }
 
     /**
@@ -29,7 +29,18 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+        'kode_buku' => 'required|unique:books',
+        'judul'     => 'required',
+        'penulis'   => 'required',
+        'kategori'  => 'required',
+        'deskripsi' => 'nullable',
+    ]);
+
+    Book::create($request->all());
+
+    return redirect()->route('admin.books.index')
+                     ->with('success', 'Data buku berhasil disimpan!');
     }
 
     /**

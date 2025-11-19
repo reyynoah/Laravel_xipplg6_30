@@ -33,13 +33,32 @@
 
     <div class="sidebar">
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          
+          <!-- Tombol Dashboard -->
           <li class="nav-item">
-            <a href="{{ url('/admin/dashboard') }}" class="nav-link active">
+            <a href="{{ url('/admin/dashboard') }}" class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard</p>
             </a>
           </li>
+
+          <!-- Tombol Students (BARU DITAMBAHKAN) -->
+          <li class="nav-item">
+            <a href="{{ url('/admin/students') }}" class="nav-link {{ request()->is('admin/students*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user-graduate"></i>
+              <p>Data Siswa</p>
+            </a>
+          </li>
+
+          <!-- Tombol Books (BARU DITAMBAHKAN) -->
+          <li class="nav-item">
+            <a href="{{ url('/admin/books') }}" class="nav-link {{ request()->is('admin/books*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-book"></i>
+              <p>Data Buku</p>
+            </a>
+          </li>
+
         </ul>
       </nav>
     </div>

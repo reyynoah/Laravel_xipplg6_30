@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BookController;
 
 // Route untuk halaman utama (Landing)
 Route::get('/', [LandingController::class, 'index'])->name('login');
+Route::resource('admin/students', StudentController::class)->names('admin.students');
 
 // Route untuk admin area
 Route::prefix('admin')->name('admin.')->group(function () {

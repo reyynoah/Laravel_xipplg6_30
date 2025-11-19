@@ -56,7 +56,8 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+    return view('admin.book.edit', compact('book'));
     }
 
     /**
@@ -64,7 +65,18 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $validated = $request->validate([
+        'kode_buku' => 'required',
+        'judul'     => 'required',
+        'penulis'   => 'required',
+        'kategori'  => 'required',
+        'deskripsi' => 'nullable',
+    ]);
+
+    $book = Book::findOrFail($id);
+    $book->update($validated);
+
+    return redirect()->route('admin.books.index')->with('success', 'Data buku berhasil diupdate!');
     }
 
     /**
